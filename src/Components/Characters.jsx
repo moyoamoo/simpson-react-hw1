@@ -1,24 +1,25 @@
-// import React, { Component } from 'react';
-// import Character from './Character';
+import React, { Component } from "react";
+import "./CSS/Character.css";
 
-// class Characters extends Component {
-//     state = {  } 
+class Characters extends Component {
+  render() {
+    const { simpson, deleteCharacter } = this.props;
+    return (
+      <div className="character">
+        <div>
+          <p>{simpson.character}</p>
+          <p>{simpson.quote}</p>
+        </div>
+        <img src={simpson.image} alt={simpson.character}/>
+        <div>
+          <button onClick={() => deleteCharacter(simpson.character)}>
+            Delete
+          </button>
+          <button>Like</button>
+        </div>
+      </div>
+    );
+  }
+}
 
-//     render() { 
-//         const {simpsons} = this.props;
-//         return (
-//           <p>{simpsons.tile}</p>
-//         );
-//     }
-// }
- 
-// export default Characters;
-
-// {todos.map((todo) => {
-//     return (
-//     <Todo
-//     todo={todo}
-//     onTodoToggleClick={onTodoToggleClick}
-//     onDeleteClick={onDeleteClick}/>
-//     );
-//   })}
+export default Characters;

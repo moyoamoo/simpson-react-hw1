@@ -3,7 +3,7 @@
     height: 40px;
     position: relative;
     display: inline-block;
-    --base-color: #263238; /*use your base color*/
+    --base-color:  #ffd90f;/*use your base color*/
   }
   .loader::before {
     content: '';  
@@ -41,3 +41,4 @@
       transform: rotate(-360deg);
     }
   }  
+

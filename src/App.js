@@ -14,10 +14,45 @@ class App extends Component {
     const { data } = await axios.get(getSimpsonsUrl(50));
     this.setState({ simpsons: data });
   };
+
+  // searchedName = (e) => {
+  //   const [...simpsons] = this.state.simpsons;
+  //   simpsons.forEach((simpson) => {
+  //     if (simpson.character === e.target.value) {
+  //       this.setState({ name: e.target.value });
+  //     }
+  //   });
+  // };
+  searchCharacter = (e) => {
+    const [...simpsons] = this.state.simpsons;
+    console.log("true")
+
+    simpsons.filter((character) => character === e.target.value);
+    this.setState({ simpsons });
+  };
+
+  deleteCharacter = (character) => {
+    const [...simpsons] = this.state.simpsons;
+    const indexOf = simpsons.findIndex(
+      (simpson) => simpson.character === character
+    );
+    simpsons.splice(indexOf, 1);
+    this.setState({ simpsons });
+  };
+
   render() {
     const { simpsons } = this.state;
-  
-    return !simpsons ? <Spinner /> : <Interface simpsons={simpsons} />;
+
+    return !simpsons ? (
+      <Spinner />
+    ) : (
+      <Interface
+        simpsons={simpsons}
+        name={this.state.name}
+        deleteCharacter={this.deleteCharacter}
+        searchCharacter={this.searchCharacter}
+      />
+    );
   }
 }
 
