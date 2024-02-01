@@ -42,3 +42,14 @@
     }
   }  
 
+.spinnerText{
+  color: #fff;
+  font-size: 3rem;
+}
+
+.spinnerContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

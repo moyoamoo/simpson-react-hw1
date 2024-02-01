@@ -5,10 +5,10 @@ class Spinner extends Component {
   state = {};
   render() {
     return (
-      <>
-        <p>Generating Characters</p>
+      <div className="spinnerContainer">
+        <p className="spinnerText">Generating Characters</p>
         <span className="loader"></span>
-      </>
+      </div>
     );
   }
 }

@@ -1,18 +1,30 @@
 import React, { Component } from "react";
 import Characters from "./Characters";
 import "./CSS/Character.css";
+import Header from "./Header";
 
 class Interface extends Component {
   state = {};
   render() {
-    const { simpsons, deleteCharacter, searchCharacter } = this.props;
+    const {
+      simpsons,
+      deleteCharacter,
+      searchCharacter,
+      likeCharacter,
+      sortAsc,
+      sortDesc,
+      sortFamilyName
+    } = this.props;
+
 
     return (
       <>
-        <input
-          type="text"
-          placeholder="Search Simpson Character"
-          onInput={() => searchCharacter}
+        <Header
+          searchCharacter={searchCharacter}
+          simpsons={simpsons}
+          sortAsc={sortAsc}
+          sortDesc={sortDesc}
+          sortFamilyName={sortFamilyName}
         />
         {simpsons.map((simpson) => {
           return (
@@ -20,6 +32,7 @@ class Interface extends Component {
               key={simpson.quote}
               simpson={simpson}
               deleteCharacter={deleteCharacter}
+              likeCharacter={likeCharacter}
             />
           );
         })}
