@@ -26,16 +26,17 @@ class Interface extends Component {
           sortDesc={sortDesc}
           sortFamilyName={sortFamilyName}
         />
-        {simpsons.map((simpson) => {
-          return (
-            <Characters
-              key={simpson.quote}
-              simpson={simpson}
-              deleteCharacter={deleteCharacter}
-              likeCharacter={likeCharacter}
-            />
-          );
-        })}
+     <div className="characterContainer">
+          {simpsons.map((simpson) => {
+            return (
+              <Characters
+                simpson={simpson}
+                deleteCharacter={deleteCharacter}
+                likeCharacter={likeCharacter}
+              />
+            );
+          })}
+     </div>
       </>
     );
   }

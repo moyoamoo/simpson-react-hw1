@@ -1,29 +1,61 @@
-.character{
-    background-color: #fff;
-    width: 80%;
-    border-radius: 2rem;
-    display: flex;
-    margin-bottom: 2rem;
+.character {
+  background-color: #fff;
+  width: 80%;
+  height:40vh;;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
 }
 img {
-    width: 30%;
+    width: 90%;
 }
 
+.name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.imageContainer {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .liked {
-    background-color: red;
+  background-color: red;
 }
 
 .notLiked {
-    background-color: aquamarine;
+  background-color: aquamarine;
+}
+
+.characterContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quoteContainer {
+    width: 60%;
+    height: 80%;
+}
+
+.quote{
+    font-size: 1.8rem;
 }
 
 
-/* .left {
+.Right {
     display: flex;
-    justify-content: left;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.right{
+.Left {
     display: flex;
-    justify-content: right;
-} */
+    flex-direction: row-reverse;
+}

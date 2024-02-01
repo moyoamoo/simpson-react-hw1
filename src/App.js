@@ -12,7 +12,7 @@ class App extends Component {
     this.getApiData();
   }
   getApiData = async () => {
-    const { data } = await axios.get(getSimpsonsUrl(30));
+    const { data } = await axios.get(getSimpsonsUrl(50));
     this.setState({ simpsons: data });
     this.addLikeProperty();
     this.addFamilyNameProperty();
@@ -87,7 +87,12 @@ class App extends Component {
 
   searchCharacter = (e) => {
     const [...simpsons] = this.state.simpsons;
-    simpsons.filter((character) => character === e.target.value);
+    simpsons.forEach((simpson) => {
+      if (simpson.character != e.value.target) {
+        return;
+      }
+    });
+    simpsons.filter((simpson) => simpson.character === e.value.target);
     this.setState({ simpsons });
   };
 
@@ -101,7 +106,7 @@ class App extends Component {
     this.setState({ deletedCharcaters: deletedCharacter });
   };
 
- h                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+  h;
   render() {
     const { simpsons } = this.state;
     return !simpsons ? (

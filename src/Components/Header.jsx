@@ -15,6 +15,7 @@ class Header extends Component {
 
     return (
       <header>
+        <h1>Simspon Quote Generator</h1>
         <input
           type="text"
           placeholder="Search Simpson Character"
