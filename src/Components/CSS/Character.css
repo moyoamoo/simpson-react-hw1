@@ -1,7 +1,14 @@
+@font-face {
+  font-family: "Simpsonfont";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./Fonts/Simpsonfont.woff") format("woff");
+}
+
 .character {
   background-color: #fff;
   width: 80%;
-  height:40vh;;
+  height: 40vh;
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -9,29 +16,51 @@
   align-items: center;
   margin-bottom: 2rem;
   padding: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 img {
-    width: 90%;
+  width: 90%;
 }
 
 .name {
-    font-size: 2rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Simpsonfont", sans-serif;
 }
 .imageContainer {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .liked {
-  background-color: red;
+  background-color: #e94f37;
+  border-radius: 2rem;
+  padding: 1rem;
+  border: none;
+  font-family: "Simpsonfont", sans-serif;
 }
 
 .notLiked {
-  background-color: aquamarine;
+  background-color: #92d4f7;
+  border-radius: 2rem;
+  padding: 1rem;
+  border: none;
+  font-family: "Simpsonfont", sans-serif;
 }
 
+.notLiked:hover,
+.notLiked:focus-within {
+  background-color: #e94f37;
+}
+.deleteBtn {
+  border-radius: 2rem;
+  padding: 1rem;
+  background-color: #ffd90f;
+  border: none;
+  color: #000;
+  font-family: "Simpsonfont", sans-serif;
+}
 .characterContainer {
   display: flex;
   justify-content: space-between;
@@ -40,22 +69,21 @@ img {
 }
 
 .quoteContainer {
-    width: 60%;
-    height: 80%;
+  width: 60%;
+  height: 80%;
 }
 
-.quote{
-    font-size: 1.8rem;
+.quote {
+  font-size: 1.8rem;
 }
-
 
 .Right {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .Left {
-    display: flex;
-    flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }

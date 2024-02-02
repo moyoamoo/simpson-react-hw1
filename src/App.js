@@ -6,7 +6,7 @@ import Interface from "./Components/Interface";
 import "./index.css";
 
 class App extends Component {
-  state = {};
+  state = { deletedCharacters: {} };
 
   componentDidMount() {
     this.getApiData();
@@ -37,7 +37,6 @@ class App extends Component {
       simpson["familyName"] = familyName;
     });
     this.setState({ simpsons });
-    console.log(simpsons);
   };
 
   sortFamilyName = () => {
@@ -79,7 +78,6 @@ class App extends Component {
   likeCharacter = (quote) => {
     const [...simpsons] = this.state.simpsons;
     const indexOf = simpsons.findIndex((simpson) => simpson.quote === quote);
-    console.log(indexOf);
     simpsons[indexOf].liked = !simpsons[indexOf].liked;
     console.log(simpsons[indexOf].liked);
     this.setState({ simpsons });
@@ -106,10 +104,19 @@ class App extends Component {
     );
     let deletedCharacter = simpsons.splice(indexOf, 1);
     this.setState({ simpsons });
-    this.setState({ deletedCharcaters: deletedCharacter });
+
+    const [...deletedCharacters] = this.state.deletedCharacters;
+    deletedCharacters = { ...deletedCharacters, ...deletedCharacter };
+    this.setState({ deletedCharacters });
   };
 
-  h;
+  restoreCharacters = () => {
+    let [...simpsons] = this.state.simpsons;
+    let [...deletedCharacters] = this.state.deletedCharacters;
+    simpsons = { ...simpsons, ...deletedCharacters };
+    this.setState({ simpsons });
+  };
+
   render() {
     const { simpsons } = this.state;
     return !simpsons ? (
@@ -124,6 +131,7 @@ class App extends Component {
         sortAsc={this.sortAsc}
         sortDesc={this.sortDesc}
         sortFamilyName={this.sortFamilyName}
+        restoreCharacters={this.restoreCharacters}
       />
     );
   }

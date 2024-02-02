@@ -13,9 +13,9 @@ class Interface extends Component {
       likeCharacter,
       sortAsc,
       sortDesc,
-      sortFamilyName
+      sortFamilyName,
+      restoreCharacters,
     } = this.props;
-
 
     return (
       <>
@@ -25,8 +25,13 @@ class Interface extends Component {
           sortAsc={sortAsc}
           sortDesc={sortDesc}
           sortFamilyName={sortFamilyName}
+          restoreCharacters={restoreCharacters}
         />
-  <Characters deleteCharacter={deleteCharacter} likeCharacter={likeCharacter} simpsons={simpsons}/>
+        <Characters
+          deleteCharacter={deleteCharacter}
+          likeCharacter={likeCharacter}
+          simpsons={simpsons}
+        />
       </>
     );
   }

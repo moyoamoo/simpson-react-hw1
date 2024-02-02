@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./CSS/Character.css";
 import Character from "./Character";
 
@@ -9,7 +8,13 @@ class Characters extends Component {
     return (
       <div className="characterContainer">
         {simpsons.map((simpson) => {
-          return <Character  deleteCharacter={deleteCharacter} likeCharacter={likeCharacter} simpson={simpson}/>;
+          return (
+            <Character
+              deleteCharacter={deleteCharacter}
+              likeCharacter={likeCharacter}
+              simpson={simpson}
+            />
+          );
         })}
       </div>
     );

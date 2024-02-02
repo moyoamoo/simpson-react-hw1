@@ -3,8 +3,14 @@ import "./CSS/Header.css";
 
 class Header extends Component {
   render() {
-    const { searchCharacter, simpsons, sortAsc, sortDesc, sortFamilyName } =
-      this.props;
+    const {
+      searchCharacter,
+      simpsons,
+      sortAsc,
+      sortDesc,
+      sortFamilyName,
+      restoreCharacters,
+    } = this.props;
 
     let totalLiked = 0;
     simpsons.forEach((simpson) => {
@@ -21,12 +27,20 @@ class Header extends Component {
           placeholder="Search Simpson Character"
           onInput={searchCharacter}
         />
-        <p>Liked Characters: {totalLiked}</p>
-        <div>
-          <button onClick={() => sortAsc()}>Sort Ascending</button>
-          <button onClick={() => sortDesc()}>Sort Descending</button>
-          <button onClick={()=> sortFamilyName()}>Sort by Family Name</button>
-          <button>Restore Deleted Characters</button>
+        <p>Liked Quote: {totalLiked}</p>
+        <div className="btnContainer">
+          <button onClick={() => sortAsc()} className="headerBtn">
+            Sort Ascending
+          </button>
+          <button onClick={() => sortDesc()} className="headerBtn">
+            Sort Descending
+          </button>
+          <button onClick={() => sortFamilyName()} className="headerBtn">
+            Sort by Family Name
+          </button>
+          <button className="headerBtn restoreBtn" onClick={() => restoreCharacters()}>
+            Restore Deleted Characters
+          </button>
         </div>
       </header>
     );

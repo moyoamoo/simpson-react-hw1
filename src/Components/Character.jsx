@@ -18,15 +18,15 @@ class Character extends Component {
             <img src={simpson.image} alt={simpson.character} />
           </div>
         </div>
-        <div>
-          <button onClick={() => deleteCharacter(simpson.character)}>
+        <div className="btnContainer">
+          <button className="deleteBtn" onClick={() => deleteCharacter(simpson.character)}>
             Delete
           </button>
-          <button
+          <button 
             onClick={() => likeCharacter(simpson.quote)}
             className={simpson.liked ? "liked" : "notLiked"}
           >
-            Like
+            {simpson.liked ?"Liked" : "Like"}
           </button>
         </div>
       </div>
