@@ -19,7 +19,7 @@ class Header extends Component {
         <input
           type="text"
           placeholder="Search Simpson Character"
-          onInput={() => searchCharacter()}
+          onInput={searchCharacter}
         />
         <p>Liked Characters: {totalLiked}</p>
         <div>

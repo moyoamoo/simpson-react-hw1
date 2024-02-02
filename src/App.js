@@ -88,11 +88,14 @@ class App extends Component {
   searchCharacter = (e) => {
     const [...simpsons] = this.state.simpsons;
     simpsons.forEach((simpson) => {
-      if (simpson.character != e.value.target) {
-        return;
+      let lowerCase = simpson.character.toLowerCase();
+
+      if (!lowerCase.includes(e.target.value.toLowerCase())) {
+        let indexOf = simpsons.indexOf(simpson);
+        simpsons.splice(indexOf, 1);
       }
     });
-    simpsons.filter((simpson) => simpson.character === e.value.target);
+
     this.setState({ simpsons });
   };
 
