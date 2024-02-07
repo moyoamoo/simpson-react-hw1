@@ -1,18 +1,16 @@
-
 @font-face {
-  font-display: swap; 
-  font-family: 'Afacad';
+  font-display: swap;
+  font-family: "Afacad";
   font-style: normal;
   font-weight: 400;
-  src: url('./Components/CSS/Fonts/afacad-v1-latin-regular.woff2') format('woff2'); 
+  src: url("./Components/CSS/Fonts/afacad-v1-latin-regular.woff2")
+    format("woff2");
 }
-
 
 body {
   margin: 0;
-  font-family: "Afacad", 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Afacad", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffd90f;
@@ -20,11 +18,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -34,7 +31,7 @@ html {
   /* font-size: 10px; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-/*   color-scheme: dark light; */
+  /*   color-scheme: dark light; */
   min-height: 100vh;
 }
 
@@ -61,7 +58,6 @@ body {
   line-height: 1.5;
   min-height: 100vh;
 }
-
 
 /* Try to keep your margins going in one direction to avoid margin collapase or grounding. I switch all the top margins off to avoid this issue. */
 h1,
@@ -112,7 +108,10 @@ a {
     }
   */
 
-img, picture, svg, video {
+img,
+picture,
+svg,
+video {
   display: block;
   /* This means that it can be less than 100% of the width of its parent IF the image is INTRINSICALLY smaller */
   max-width: 100%;
@@ -189,4 +188,3 @@ select {
     scroll-behavior: auto !important;
   }
 }
-

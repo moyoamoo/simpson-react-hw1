@@ -8,13 +8,15 @@ class Characters extends Component {
     return (
       <div className="characterContainer">
         {simpsons.map((simpson) => {
-          return (
-            <Character
-              deleteCharacter={deleteCharacter}
-              likeCharacter={likeCharacter}
-              simpson={simpson}
-            />
-          );
+          if (!simpson.delete) {
+            return (
+              <Character
+                deleteCharacter={deleteCharacter}
+                likeCharacter={likeCharacter}
+                simpson={simpson}
+              />
+            );
+          }
         })}
       </div>
     );

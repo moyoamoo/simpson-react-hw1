@@ -13,22 +13,12 @@ class App extends Component {
   }
   getApiData = async () => {
     const { data } = await axios.get(getSimpsonsUrl(50));
-    this.setState({ simpsons: data });
-    this.addLikeProperty();
-    this.addFamilyNameProperty();
-  };
-
-  addLikeProperty = () => {
-    const [...simpsons] = this.state.simpsons;
-    simpsons.forEach((simpson) => {
+    data.forEach((simpson) => {
       simpson["liked"] = false;
+      simpson["id"] = Math.random();
+      simpson["delete"] = false;
     });
-    this.setState({ simpsons });
-  };
-
-  addFamilyNameProperty = () => {
-    const [...simpsons] = this.state.simpsons;
-    simpsons.forEach((simpson) => {
+    data.forEach((simpson) => {
       let spaceIndex = simpson.character.indexOf(" ");
       let familyName = simpson.character.slice(
         spaceIndex + 1,
@@ -36,7 +26,7 @@ class App extends Component {
       );
       simpson["familyName"] = familyName;
     });
-    this.setState({ simpsons });
+    this.setState({ simpsons: data });
   };
 
   sortFamilyName = () => {
@@ -85,15 +75,12 @@ class App extends Component {
 
   searchCharacter = (e) => {
     const [...simpsons] = this.state.simpsons;
-    simpsons.forEach((simpson) => {
+    simpsons.filter((simpson) => {
       let lowerCase = simpson.character.toLowerCase();
-
       if (!lowerCase.includes(e.target.value.toLowerCase())) {
-        let indexOf = simpsons.indexOf(simpson);
-        simpsons.splice(indexOf, 1);
+        return true;
       }
     });
-
     this.setState({ simpsons });
   };
 
@@ -102,18 +89,16 @@ class App extends Component {
     const indexOf = simpsons.findIndex(
       (simpson) => simpson.character === character
     );
-    let deletedCharacter = simpsons.splice(indexOf, 1);
-    this.setState({ simpsons });
+    simpsons[indexOf].delete = true;
 
-    const [...deletedCharacters] = this.state.deletedCharacters;
-    deletedCharacters = { ...deletedCharacters, ...deletedCharacter };
-    this.setState({ deletedCharacters });
+    this.setState({ simpsons });
   };
 
   restoreCharacters = () => {
     let [...simpsons] = this.state.simpsons;
-    let [...deletedCharacters] = this.state.deletedCharacters;
-    simpsons = { ...simpsons, ...deletedCharacters };
+    simpsons.forEach(simpson =>{
+      simpson.delete = false;
+    })
     this.setState({ simpsons });
   };
 
