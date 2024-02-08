@@ -61,6 +61,13 @@ img {
   color: #000;
   font-family: "Simpsonfont", sans-serif;
 }
+
+.deleteBtn:hover,
+.deleteBtn:focus-within {
+  background-color: #373f51;
+  color: #fff;
+}
+
 .characterContainer {
   display: flex;
   justify-content: space-between;

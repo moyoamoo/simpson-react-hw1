@@ -19,14 +19,17 @@ class Character extends Component {
           </div>
         </div>
         <div className="btnContainer">
-          <button className="deleteBtn" onClick={() => deleteCharacter(simpson.character)}>
+          <button
+            className="deleteBtn"
+            onClick={() => deleteCharacter(simpson.quote)}
+          >
             Delete
           </button>
-          <button 
+          <button
             onClick={() => likeCharacter(simpson.quote)}
             className={simpson.liked ? "liked" : "notLiked"}
           >
-            {simpson.liked ?"Liked" : "Like"}
+            {simpson.liked ? "Liked" : "Like"}
           </button>
         </div>
       </div>

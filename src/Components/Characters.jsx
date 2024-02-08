@@ -11,6 +11,7 @@ class Characters extends Component {
           if (!simpson.delete) {
             return (
               <Character
+                key={simpson.id}
                 deleteCharacter={deleteCharacter}
                 likeCharacter={likeCharacter}
                 simpson={simpson}

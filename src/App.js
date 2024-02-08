@@ -4,10 +4,10 @@ import { getSimpsonsUrl } from "./config";
 import Spinner from "./Components/Spinner";
 import Interface from "./Components/Interface";
 import "./index.css";
+import Joi from "joi";
 
 class App extends Component {
   state = { deletedCharacters: {} };
-
   componentDidMount() {
     this.getApiData();
   }
@@ -73,32 +73,63 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
-  searchCharacter = (e) => {
-    const [...simpsons] = this.state.simpsons;
-    simpsons.filter((simpson) => {
-      let lowerCase = simpson.character.toLowerCase();
-      if (!lowerCase.includes(e.target.value.toLowerCase())) {
-        return true;
-      }
-    });
-    this.setState({ simpsons });
+  schema = { character: Joi.string().min(3).max(19)};
+  searchCharacter = async (e) => {
+    // const [...simpsons] = this.state.simpsons;
+    const userSearch = {...this.state.userSearch}
+    userSearch["character"] = e.target.value;
+    console.log(userSearch.character)
+
+    this.setState({ userSearch });
+    const _joiInstance = Joi.object(this.schema);
+
+    try {
+      await _joiInstance.validateAsync(this.state.userSearch);
+      this.setState({ errors: undefined });
+    } catch (error) {
+      console.log(error);
+
+      const errorsFormat = {};
+      error.details.forEach((error) => {
+        errorsFormat[error.context.key] = error.message;
+      });
+
+      this.setState({ errors: errorsFormat });
+    }
+
+    // simpsons.forEach((simpson) => {
+    //   let lowerCase = simpson.character.toLowerCase();
+
+    //   if (!lowerCase.includes(e.target.value.toLowerCase())) {
+    //     let indexOf = simpsons.indexOf(simpson);
+    //     simpsons.splice(indexOf, 1);
+    //   }
+    // });
+
+    // this.setState({ simpsons });
   };
 
-  deleteCharacter = (character) => {
-    const [...simpsons] = this.state.simpsons;
-    const indexOf = simpsons.findIndex(
-      (simpson) => simpson.character === character
-    );
-    simpsons[indexOf].delete = true;
+  // searchCharacter = (e) => {
+  //   let [...simpsons] = this.state.simpsons;
+  //   let filter = simpsons.filter(
+  //     (simpson) =>
+  //       simpson.character.toLowerCase() !== e.target.value.toLowerCase()
+  //   );
+  //   this.setState({ simpsons });
+  // };
 
+  deleteCharacter = (quote) => {
+    const [...simpsons] = this.state.simpsons;
+    const indexOf = simpsons.findIndex((simpson) => simpson.quote === quote);
+    simpsons[indexOf].delete = !simpsons[indexOf].delete;
     this.setState({ simpsons });
   };
 
   restoreCharacters = () => {
     let [...simpsons] = this.state.simpsons;
-    simpsons.forEach(simpson =>{
+    simpsons.forEach((simpson) => {
       simpson.delete = false;
-    })
+    });
     this.setState({ simpsons });
   };
 
@@ -117,6 +148,7 @@ class App extends Component {
         sortDesc={this.sortDesc}
         sortFamilyName={this.sortFamilyName}
         restoreCharacters={this.restoreCharacters}
+        errors={this.state.errors}
       />
     );
   }

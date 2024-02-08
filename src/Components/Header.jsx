@@ -10,6 +10,7 @@ class Header extends Component {
       sortDesc,
       sortFamilyName,
       restoreCharacters,
+      errors
     } = this.props;
 
     let totalLiked = 0;
@@ -27,6 +28,7 @@ class Header extends Component {
           placeholder="Search Simpson Character"
           onInput={searchCharacter}
         />
+        <p className="validation">{errors && errors.character}</p>
         <p>Liked Quote: {totalLiked}</p>
         <div className="btnContainer">
           <button onClick={() => sortAsc()} className="headerBtn">
