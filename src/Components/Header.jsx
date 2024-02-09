@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./CSS/Header.scss";
+import Buttons from "./Buttons";
 
 class Header extends Component {
   render() {
@@ -10,7 +11,7 @@ class Header extends Component {
       sortDesc,
       sortFamilyName,
       restoreCharacters,
-      errors
+      errors,
     } = this.props;
 
     let totalLiked = 0;
@@ -30,20 +31,12 @@ class Header extends Component {
         />
         <p className="validation">{errors && errors.character}</p>
         <p>Liked Quote: {totalLiked}</p>
-        <div className="btnContainer">
-          <button onClick={() => sortAsc()} className="headerBtn">
-            Sort Ascending
-          </button>
-          <button onClick={() => sortDesc()} className="headerBtn">
-            Sort Descending
-          </button>
-          <button onClick={() => sortFamilyName()} className="headerBtn">
-            Sort by Family Name
-          </button>
-          <button className="headerBtn restoreBtn" onClick={() => restoreCharacters()}>
-            Restore Deleted Characters
-          </button>
-        </div>
+        <Buttons
+          sortAsc={sortAsc}
+          sortDesc={sortDesc}
+          sortFamilyName={sortFamilyName}
+          restoreCharacters={restoreCharacters}
+        />
       </header>
     );
   }

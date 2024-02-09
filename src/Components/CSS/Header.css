@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "Simpsonfont";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./Fonts/Simpsonfont.woff") format("woff");
+}
+header {
+  background-color: #92d4f7;
+  background-position: center;
+  height: 50vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+input[type=text] {
+  width: 60%;
+  text-align: center;
+  border-radius: 2rem;
+  padding: 0.7rem;
+  border: none;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  font-family: "Simpsonfont", sans-serif;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+  padding: 1.3rem;
+  align-items: center;
+}
+
+.headerBtn {
+  border-radius: 2rem;
+  background-color: #3f88c5;
+  color: #fff;
+  padding: 1rem;
+  border: none;
+}
+
+.headerBtn:hover,
+.headerBtn:focus-within {
+  background-color: #ffd90f;
+  color: #000;
+}
+
+.restoreBtn {
+  background-color: #373f51;
+}
+
+.validation {
+  color: #e94f37;
+}/*# sourceMappingURL=Header.css.map */

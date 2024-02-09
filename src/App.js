@@ -73,18 +73,18 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
-  schema = { character: Joi.string().min(3).max(19)};
+  schema = { character: Joi.string().min(3).max(19) };
   searchCharacter = async (e) => {
-    // const [...simpsons] = this.state.simpsons;
-    const userSearch = {...this.state.userSearch}
+    const [...simpsons] = this.state.simpsons;
+    const userSearch = { ...this.state.userSearch };
     userSearch["character"] = e.target.value;
-    console.log(userSearch.character)
+    console.log(userSearch.character);
 
     this.setState({ userSearch });
     const _joiInstance = Joi.object(this.schema);
 
     try {
-      await _joiInstance.validateAsync(this.state.userSearch);
+      await _joiInstance.validateAsync(userSearch);
       this.setState({ errors: undefined });
     } catch (error) {
       console.log(error);
@@ -97,26 +97,16 @@ class App extends Component {
       this.setState({ errors: errorsFormat });
     }
 
-    // simpsons.forEach((simpson) => {
-    //   let lowerCase = simpson.character.toLowerCase();
+    const filtered = simpsons.filter((simpson) => {
+      if (
+        simpson.character.toLowerCase().includes(e.target.value.toLowerCase())
+      ) {
+        return true;
+      }
+    });
 
-    //   if (!lowerCase.includes(e.target.value.toLowerCase())) {
-    //     let indexOf = simpsons.indexOf(simpson);
-    //     simpsons.splice(indexOf, 1);
-    //   }
-    // });
-
-    // this.setState({ simpsons });
+    this.setState({ filtered });
   };
-
-  // searchCharacter = (e) => {
-  //   let [...simpsons] = this.state.simpsons;
-  //   let filter = simpsons.filter(
-  //     (simpson) =>
-  //       simpson.character.toLowerCase() !== e.target.value.toLowerCase()
-  //   );
-  //   this.setState({ simpsons });
-  // };
 
   deleteCharacter = (quote) => {
     const [...simpsons] = this.state.simpsons;
@@ -134,12 +124,12 @@ class App extends Component {
   };
 
   render() {
-    const { simpsons } = this.state;
+    const { simpsons, filtered } = this.state;
     return !simpsons ? (
       <Spinner />
     ) : (
       <Interface
-        simpsons={simpsons}
+        simpsons={filtered ? filtered : simpsons}
         name={this.state.name}
         deleteCharacter={this.deleteCharacter}
         searchCharacter={this.searchCharacter}
