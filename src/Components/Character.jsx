@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-impq
+
 
 class Character extends Component {
   render() {
