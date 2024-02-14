@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Buttons extends Component {
-    state = {  } 
-    render() { 
-        const {sortAsc, sortDesc, sortFamilyName, restoreCharacters} = this.props;
-        return (
-            <div className="btnContainer">
+const Buttons = ({sortAsc, sortDesc, sortFamilyName, restoreCharacters}) => {
+  return ( <div className="btnContainer">
             <button onClick={() => sortAsc()} className="headerBtn">
               Sort Ascending
             </button>
@@ -18,9 +14,8 @@ class Buttons extends Component {
             <button className="headerBtn restoreBtn" onClick={() => restoreCharacters()}>
               Restore Deleted Characters
             </button>
-          </div>
-        );
-    }
+          </div>  );
 }
  
 export default Buttons;
+
