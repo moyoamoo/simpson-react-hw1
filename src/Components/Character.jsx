@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+impq
 
 class Character extends Component {
   render() {
     const { simpson, deleteCharacter, likeCharacter } = this.props;
-
     return (
       <div className="character">
         <div
