@@ -1,6 +1,6 @@
 import React from "react";
 
-const Character = ({ simpson, deleteCharacter, likeCharacter }) => {
+const Character = ({ simpson, deleteCharacter, likeCharacter, }) => {
   return (
     <div className="character">
       <div

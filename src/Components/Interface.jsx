@@ -5,6 +5,7 @@ import Header from "./Header";
 
 const Interface = ({
   simpsons,
+  showLiked,
   deleteCharacter,
   searchCharacter,
   likeCharacter,
@@ -17,6 +18,7 @@ const Interface = ({
   return (
     <>
       <Header
+        showLiked={showLiked}
         searchCharacter={searchCharacter}
         simpsons={simpsons}
         sortAsc={sortAsc}

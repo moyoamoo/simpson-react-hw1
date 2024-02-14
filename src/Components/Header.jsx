@@ -5,6 +5,7 @@ import Buttons from "./Buttons";
 const Header = ({
   searchCharacter,
   simpsons,
+  showLiked,
   sortAsc,
   sortDesc,
   sortFamilyName,
@@ -13,7 +14,7 @@ const Header = ({
 }) => {
   let totalLiked = 0;
   simpsons.forEach((simpson) => {
-    if (simpson.liked) {
+    if (simpson.liked && !simpson.delete) {
       totalLiked++;
     }
   });
@@ -28,6 +29,7 @@ const Header = ({
       <p className="validation">{errors && errors.character}</p>
       <p>Liked Quote: {totalLiked}</p>
       <Buttons
+        showLiked={showLiked}
         sortAsc={sortAsc}
         sortDesc={sortDesc}
         sortFamilyName={sortFamilyName}

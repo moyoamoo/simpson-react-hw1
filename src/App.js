@@ -12,7 +12,6 @@ const App = () => {
   const [filtered, setFiltered] = useState();
   const [errors, setErrors] = useState();
 
-
   const getApiData = useCallback(async () => {
     const { data } = await axios.get(getSimpsonsUrl(50));
     data.forEach((simpson) => {
@@ -95,23 +94,22 @@ const App = () => {
   const schema = { character: Joi.string().min(3).max(19) };
   const searchCharacter = async (e) => {
     const newSimpsons = [...simpsons];
-    const search = {character: e.target.value};
+    const search = { character: e.target.value };
     setUserSearch(search);
 
     const _joiInstance = Joi.object(schema);
 
     try {
       await _joiInstance.validateAsync(userSearch);
-      setErrors({undefined})
+      setErrors({ undefined });
     } catch (error) {
-
-      const newErrors = {...errors};
+      const newErrors = { ...errors };
       error.details.forEach((error) => {
         newErrors[error.context.key] = error.message;
       });
 
-      setErrors({ newErrors});
-      console.log(newErrors)
+      setErrors({ newErrors });
+      console.log(newErrors);
     }
 
     const newFiltered = newSimpsons.filter((simpson) => {
@@ -121,7 +119,17 @@ const App = () => {
         return true;
       }
     });
-    setFiltered(newFiltered)
+    setFiltered(newFiltered);
+  };
+
+  const showLiked = () => {
+    const newSimpsons = [...simpsons];
+    const newFiltered = newSimpsons.filter((simpson) => {
+      if (simpson.liked) {
+        return true;
+      }
+    });
+    setFiltered(newFiltered);
   };
 
   return !simpsons ? (
@@ -129,7 +137,7 @@ const App = () => {
   ) : (
     <Interface
       simpsons={filtered ? filtered : simpsons}
-      // name={this.state.name}
+      showLiked={showLiked}
       deleteCharacter={deleteCharacter}
       searchCharacter={searchCharacter}
       likeCharacter={likeCharacter}
@@ -177,5 +185,3 @@ export default App;
 
 //     this.setState({ filtered });
 //   };
-
-
