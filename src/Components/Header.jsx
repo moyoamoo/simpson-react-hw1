@@ -1,16 +1,14 @@
 import React from "react";
 import "./CSS/Header.scss";
 import Buttons from "./Buttons";
-
+import Select from "./Select";
 const Header = ({
   searchCharacter,
   simpsons,
   showLiked,
-  sortAsc,
-  sortDesc,
-  sortFamilyName,
   restoreCharacters,
   errors,
+  sortSimpsons
 }) => {
   let totalLiked = 0;
   simpsons.forEach((simpson) => {
@@ -28,12 +26,9 @@ const Header = ({
       />
       <p className="validation">{errors && errors.character}</p>
       <p>Liked Quote: {totalLiked}</p>
-      <Buttons
-        showLiked={showLiked}
-        sortAsc={sortAsc}
-        sortDesc={sortDesc}
-        sortFamilyName={sortFamilyName}
-        restoreCharacters={restoreCharacters}
+      <Buttons showLiked={showLiked} restoreCharacters={restoreCharacters} />
+      <Select
+        sortSimpsons={sortSimpsons}
       />
     </header>
   );

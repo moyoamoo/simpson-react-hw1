@@ -9,33 +9,29 @@ const Interface = ({
   deleteCharacter,
   searchCharacter,
   likeCharacter,
-  sortAsc,
-  sortDesc,
-  sortFamilyName,
   restoreCharacters,
   errors,
+  sortSimpsons,
 }) => {
   return (
     <>
-    <header>
+      <header>
         <Header
           showLiked={showLiked}
           searchCharacter={searchCharacter}
           simpsons={simpsons}
-          sortAsc={sortAsc}
-          sortDesc={sortDesc}
-          sortFamilyName={sortFamilyName}
           restoreCharacters={restoreCharacters}
           errors={errors}
+          sortSimpsons={sortSimpsons}
         />
-    </header>
-    <main>
+      </header>
+      <main>
         <Characters
           deleteCharacter={deleteCharacter}
           likeCharacter={likeCharacter}
           simpsons={simpsons}
         />
-    </main>
+      </main>
     </>
   );
 };

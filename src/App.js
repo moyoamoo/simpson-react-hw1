@@ -6,7 +6,6 @@ import Interface from "./Components/Interface";
 import "./index.css";
 import Joi from "joi";
 
-
 const App = () => {
   const [simpsons, setSimpsons] = useState();
   const [userSearch, setUserSearch] = useState();
@@ -56,39 +55,40 @@ const App = () => {
     setSimpsons(newSimpsons);
   };
 
-  const sortFamilyName = () => {
+  const sortSimpsons = (e) => {
+    const value = e.target.value;
     const newSimpsons = [...simpsons];
-    newSimpsons.sort((a, b) => {
-      if (a.familyName > b.familyName) {
-        return 1;
-      } else if (a.familyName < b.familyName) {
-        return -1;
-      }
-    });
-    setSimpsons(newSimpsons);
-  };
+    console.log(value)
 
-  const sortAsc = () => {
-    const newSimpsons = [...simpsons];
-    newSimpsons.sort((a, b) => {
-      if (a.character > b.character) {
-        return 1;
-      } else if (a.character < b.character) {
-        return -1;
-      }
-    });
-    setSimpsons(newSimpsons);
-  };
-
-  const sortDesc = () => {
-    const newSimpsons = [...simpsons];
-    newSimpsons.sort((a, b) => {
-      if (a.character > b.character) {
-        return -1;
-      } else if (a.character < b.character) {
-        return 1;
-      }
-    });
+    switch (value) {
+      case "sortAsc":
+        newSimpsons.sort((a, b) => {
+          if (a.character > b.character) {
+            return 1;
+          } else if (a.character < b.character) {
+            return -1;
+          }
+        });
+        break;
+      case "sortDesc":
+        newSimpsons.sort((a, b) => {
+          if (a.character < b.character) {
+            return 1;
+          } else if (a.character > b.character) {
+            return -1;
+          }
+        });
+      case "sortFamily":
+        newSimpsons.sort((a, b) => {
+          if (a.familyName > b.familyName) {
+            return 1;
+          } else if (a.familyName < b.familyName) {
+            return -1;
+          }
+        });
+      default:
+        break;
+    }
     setSimpsons(newSimpsons);
   };
 
@@ -142,11 +142,9 @@ const App = () => {
       deleteCharacter={deleteCharacter}
       searchCharacter={searchCharacter}
       likeCharacter={likeCharacter}
-      sortAsc={sortAsc}
-      sortDesc={sortDesc}
-      sortFamilyName={sortFamilyName}
       restoreCharacters={restoreCharacters}
       errors={errors}
+      sortSimpsons={sortSimpsons}
     />
   );
 };
