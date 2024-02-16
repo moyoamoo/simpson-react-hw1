@@ -6,6 +6,7 @@ import Interface from "./Components/Interface";
 import "./index.css";
 import Joi from "joi";
 
+
 const App = () => {
   const [simpsons, setSimpsons] = useState();
   const [userSearch, setUserSearch] = useState();
