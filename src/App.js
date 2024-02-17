@@ -5,6 +5,7 @@ import Spinner from "./Components/Spinner";
 import Interface from "./Components/Interface";
 import "./index.css";
 import Joi from "joi";
+import { json } from "react-router-dom";
 
 const App = () => {
   const [simpsons, setSimpsons] = useState();
@@ -29,9 +30,29 @@ const App = () => {
     setSimpsons(data);
   }, []);
 
+  const loadDatafromDisk = () => {
+    const dataFromDisk = localStorage.getItem("simpsons");
+    console.log(dataFromDisk);
+    if (dataFromDisk) {
+      console.log(JSON.parse(dataFromDisk));
+      return JSON.parse(dataFromDisk);
+    }
+  };
+
   useEffect(() => {
-    getApiData();
+    const dataFromDisk = loadDatafromDisk();
+    if (dataFromDisk) {
+      setSimpsons(dataFromDisk);
+    } else {
+      getApiData();
+    }
   }, [getApiData]);
+
+  useEffect(() => {
+    if (simpsons){
+      localStorage.setItem("simpsons", JSON.stringify(simpsons));
+    }
+  }, [simpsons]);
 
   const likeCharacter = (quote) => {
     const newSimpsons = [...simpsons];
@@ -58,7 +79,7 @@ const App = () => {
   const sortSimpsons = (e) => {
     const value = e.target.value;
     const newSimpsons = [...simpsons];
-    console.log(value)
+    console.log(value);
 
     switch (value) {
       case "sortAsc":
@@ -92,6 +113,7 @@ const App = () => {
     setSimpsons(newSimpsons);
   };
 
+
   const schema = { character: Joi.string().min(3).max(19) };
   const searchCharacter = async (e) => {
     const newSimpsons = [...simpsons];
@@ -102,14 +124,14 @@ const App = () => {
 
     try {
       await _joiInstance.validateAsync(userSearch);
-      setErrors({ undefined });
+      setErrors({});
     } catch (error) {
-      const newErrors = { ...errors };
+      const newErrors = {};
       error.details.forEach((error) => {
         newErrors[error.context.key] = error.message;
       });
 
-      setErrors({ newErrors });
+      setErrors(newErrors);
       console.log(newErrors);
     }
 
@@ -149,38 +171,3 @@ const App = () => {
   );
 };
 export default App;
-
-//   schema = { character: Joi.string().min(3).max(19) };
-//   searchCharacter = async (e) => {
-//     const [...simpsons] = this.state.simpsons;
-//     const userSearch = { ...this.state.userSearch };
-//     userSearch["character"] = e.target.value;
-//     console.log(userSearch.character);
-
-//     this.setState({ userSearch });
-//     const _joiInstance = Joi.object(this.schema);
-
-//     try {
-//       await _joiInstance.validateAsync(userSearch);
-//       this.setState({ errors: undefined });
-//     } catch (error) {
-//       console.log(error);
-
-//       const errorsFormat = {};
-//       error.details.forEach((error) => {
-//         errorsFormat[error.context.key] = error.message;
-//       });
-
-//       this.setState({ errors: errorsFormat });
-//     }
-
-//     const filtered = simpsons.filter((simpson) => {
-//       if (
-//         simpson.character.toLowerCase().includes(e.target.value.toLowerCase())
-//       ) {
-//         return true;
-//       }
-//     });
-
-//     this.setState({ filtered });
-//   };

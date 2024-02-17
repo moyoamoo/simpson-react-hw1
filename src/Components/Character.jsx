@@ -1,6 +1,7 @@
 import React from "react";
+import Button from "./Button";
 
-const Character = ({ simpson, deleteCharacter, likeCharacter, }) => {
+const Character = ({ simpson, deleteCharacter, likeCharacter, favouriteSimpson }) => {
   return (
     <div className="character">
       <div
@@ -16,18 +17,9 @@ const Character = ({ simpson, deleteCharacter, likeCharacter, }) => {
         </div>
       </div>
       <div className="btnContainer">
-        <button
-          className="deleteBtn"
-          onClick={() => deleteCharacter(simpson.quote)}
-        >
-          Delete
-        </button>
-        <button
-          onClick={() => likeCharacter(simpson.quote)}
-          className={simpson.liked ? "liked" : "notLiked"}
-        >
-          {simpson.liked ? "Liked" : "Like"}
-        </button>
+       
+        <Button className="deleteBtn" onClick={() => deleteCharacter(simpson.quote)} text="delete"/>
+        <Button className={simpson.liked ? "liked" : "notLiked"} text={simpson.liked ? "Liked" : "Like"} onClick={() => likeCharacter(simpson.quote)}/>
       </div>
     </div>
   );
